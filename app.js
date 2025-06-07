@@ -1,6 +1,8 @@
 let humanScore = 0;
 let computerScore = 0;
 
+const ROUNDS_TO_PLAY = 1;
+
 function getComputerChoice() {
   const random = Math.random();
 
@@ -35,7 +37,7 @@ function playRound(humanChoice, computerChoice) {
 }
 
 function playGame() {
-  for (let index = 0; index < 5; index++) {
+  for (let index = 0; index < ROUNDS_TO_PLAY; index++) {
     const humanSelection = getUserChoice();
     const computerSelection = getComputerChoice();
 
