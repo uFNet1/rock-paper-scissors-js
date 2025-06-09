@@ -3,6 +3,10 @@ let computerScore = 0;
 
 const ROUNDS_TO_PLAY = 1;
 
+const humanScoreDiv = document.querySelector("#humanScore");
+const computerScoreDiv = document.querySelector("#computerScore");
+const winAnnouncementDiv = document.querySelector("#win-announcement");
+
 function getComputerChoice() {
   const random = Math.random();
 
@@ -36,18 +40,52 @@ function playRound(humanChoice, computerChoice) {
   }
 }
 
-function playGame() {
-  for (let index = 0; index < ROUNDS_TO_PLAY; index++) {
-    const humanSelection = getUserChoice();
-    const computerSelection = getComputerChoice();
+function playGame(humanChoice) {
+  const humanSelection = humanChoice;
+  const computerSelection = getComputerChoice();
 
-    const result = playRound(humanSelection, computerSelection);
+  const result = playRound(humanSelection, computerSelection);
 
-    if (result === "win") humanScore += 1;
-    if (result === "lose") computerScore += 1;
+  if (result === "win") {
+    humanScore += 1;
+    humanScoreDiv.textContent = Number(humanScoreDiv.textContent) + 1;
   }
-  if (humanScore > computerScore) console.log("You are winner!");
-  else if (computerScore > humanScore) console.log("You lost.");
-  else console.log("This is a Tie!");
+  if (result === "lose") {
+    computerScore += 1;
+    computerScoreDiv.textContent = Number(computerScoreDiv.textContent) + 1;
+  }
+  if (humanScore >= 5 || computerScore >= 5) {
+    winAnnouncementDiv.style.display = "inline";
+    if (humanScore > computerScore) {
+      console.log("You are winner!");
+      winAnnouncementDiv.textContent = "You are winner!";
+      winAnnouncementDiv.style.color = "#2dca2d";
+    } else if (computerScore > humanScore) {
+      console.log("You lost.");
+      winAnnouncementDiv.textContent = "You lost.";
+      winAnnouncementDiv.style.color = "#e42d2d";
+    } else {
+      console.log("This is a Tie!");
+      winAnnouncementDiv.textContent = "This is a Tie!";
+    }
+  }
 }
-playGame();
+
+function initializeGame() {
+  document.querySelector("#rock").addEventListener("click", () => {
+    playGame("rock");
+  });
+  document.querySelector("#paper").addEventListener("click", () => {
+    playGame("paper");
+  });
+  document.querySelector("#scissors").addEventListener("click", () => {
+    playGame("scissors");
+  });
+
+  humanScoreDiv.textContent = "0";
+  computerScoreDiv.textContent = "0";
+}
+initializeGame();
+// adding listeners to buttons
+// calling play round with button result as a parameter for human choice
+//

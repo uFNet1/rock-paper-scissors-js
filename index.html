@@ -4,11 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <script src="app.js"></script>
+    <script src="app.js" defer></script>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <button type="button" id="rock">🗿</button>
-    <button type="button" id="paper">📄</button>
-    <button type="button" id="scissors">✂</button>
+    <div class="app">
+      <p id="win-announcement">You win!</p>
+      <div class="results">
+        <div class="playerResult">
+          <p>You</p>
+          <div id="humanScore"></div>
+        </div>
+        <div class="computerResult">
+          <p>Computer</p>
+          <div id="computerScore"></div>
+        </div>
+      </div>
+      <hr />
+      <button type="button" id="rock">🗿</button>
+      <button type="button" id="paper">📄</button>
+      <button type="button" id="scissors">✂</button>
+    </div>
   </body>
 </html>
